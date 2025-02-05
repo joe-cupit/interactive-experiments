@@ -1,0 +1,88 @@
+* {
+  box-sizing: border-box;
+  user-select: none;
+}
+
+
+body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  min-width: fit-content;
+  min-height: 100vh;
+
+  background: #160B06;
+  margin: 0;
+  padding: 1rem;
+}
+
+button {
+  color: white;
+  font-weight: bold;
+  font-size: inherit;
+  background: #3d2012;
+  border: none;
+  padding: 0.5rem 0.75rem;
+  margin: 0.5rem;
+  border-radius: 0.5rem;
+
+  cursor: pointer;
+  transition: background-color 100ms;
+}
+button:hover {
+  background: #4d2916;
+}
+
+
+.departure-board {
+  --_departure-point-width: 10px;
+  --_departure-point-gap: 2px;
+  --_departure-row-height: 9;
+
+  display: flex;
+  flex-direction: column;
+  gap: var(--_departure-point-width);
+}
+.departure-row {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  gap: var(--_departure-point-gap);
+
+  width: fit-content;
+  height: calc((var(--_departure-point-width) + var(--_departure-point-gap)) * var(--_departure-row-height));
+}
+.departure-point {
+  position: relative;
+  background: #261B18;
+
+  width: var(--_departure-point-width);
+  aspect-ratio: 1;
+  border-radius: 50%;
+}
+
+
+.departure-point.on::before,
+.departure-point.on::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+}
+
+.departure-point.on::before {
+  z-index: 1;
+
+  box-shadow:
+    0 0 calc(var(--_departure-point-width) * 0.3) calc(var(--_departure-point-width) * 0.1) #f5b545aa,
+    0 0 var(--_departure-point-width) calc(var(--_departure-point-width) * 0.5) #cf620277,
+    0 0 calc(var(--_departure-point-width) * 1.2) calc(var(--_departure-point-width) * 0.6) #6c280655;
+}
+.departure-point.on::after {
+  z-index: 2;
+
+  background: #EFAA32;
+  opacity: 1;
+}

@@ -1,0 +1,125 @@
+let penDown = false;
+let eraseDown = false;
+let prevEventTarget = null;
+
+
+function handleMouseMove(event) {
+  if (!penDown && !eraseDown) return;
+  event.preventDefault();
+
+  if (event.target.classList.contains("departure-point")) {
+    if (event.target === prevEventTarget) return;
+
+    if (penDown) event.target.classList.add("on");
+    else if (eraseDown) event.target.classList.remove("on");
+  }
+
+  prevEventTarget = event.target;
+}
+
+document.addEventListener("mousemove", handleMouseMove);
+
+
+function handleMouseDown(event) {
+  switch (event.button) {
+    case 0:
+      penDown = true;
+      break;
+    case 2:
+      eraseDown = true;
+      break;
+    default:
+      penDown = false;
+      eraseDown = false;
+      break;
+  }
+
+  handleMouseMove(event);
+}
+
+function handleMouseUp(event) {
+  penDown = false;
+  eraseDown = false;
+  prevEventTarget = null;
+}
+
+
+document.addEventListener("mousedown", handleMouseDown);
+document.addEventListener("mouseup", handleMouseUp);
+
+
+async function sleep(ms) {
+  return new Promise(r => setTimeout(r, ms));
+}
+
+async function clearRow(rowElement) {
+  const departurePointsOn = [...rowElement.querySelectorAll(".departure-point.on")];
+  const sleepTime = 750 / departurePointsOn.length;
+
+  const shuffledPoints = departurePointsOn
+    .map(v => ({v, sort: Math.random()}))
+    .sort((a, b) => a.sort - b.sort)
+    .map(({ v }) => v);
+
+  for (let point of shuffledPoints) {
+    point.classList.remove("on");
+    await sleep(sleepTime);
+  }
+}
+
+function clearBoard() {
+  const departureRows = document.querySelectorAll(".departure-row");
+
+  for (let dRow of departureRows) {
+    clearRow(dRow);
+  }
+}
+
+async function fillRow(rowElement) {
+  const departurePointsOn = [...rowElement.querySelectorAll(".departure-point:not(.on)")];
+  const sleepTime = 750 / departurePointsOn.length;
+
+  const shuffledPoints = departurePointsOn
+    .map(v => ({v, sort: Math.random()}))
+    .sort((a, b) => a.sort - b.sort)
+    .map(({ v }) => v);
+
+  for (let point of shuffledPoints) {
+    point.classList.add("on");
+    await sleep(sleepTime);
+  }
+}
+
+function fillBoard() {
+  const departureRows = document.querySelectorAll(".departure-row");
+
+  for (let dRow of departureRows) {
+    fillRow(dRow);
+  }
+}
+
+
+let currentText = "";
+
+function handleKeyUp(event) {
+  const { key, location } = event;
+
+  if (location === 0) currentText += key;
+}
+
+document.addEventListener("keyup", handleKeyUp);
+
+
+
+function createBoard(rows, rowLen) {
+  const departureBoard = document.querySelector(".departure-board");
+  const departurePoint = "<div class='departure-point'></div>";
+
+  for (let i=0; i<rows; i++) {
+    let departureRow = document.createElement("div");
+    departureRow.classList.add("departure-row");
+    departureRow.innerHTML = departurePoint.repeat(rowLen * 9);
+
+    departureBoard.appendChild(departureRow);
+  }
+}
