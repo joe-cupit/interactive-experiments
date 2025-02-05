@@ -1,0 +1,113 @@
+* {
+  box-sizing: border-box;
+  user-select: none;
+}
+
+body {
+  display: grid;
+  min-height: 100vh;
+  margin: 0;
+}
+
+
+.clock-container {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  align-items: center;
+  justify-content: center;
+
+  background: #223;
+}
+
+
+.clock_radio-group {
+  display: flex;
+  flex-direction: column;
+  color: white;
+}
+.clock_radio-group label,
+.clock_radio-group input {
+  cursor: pointer;
+}
+
+
+.clock {
+  --_clock-width: 350px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  position: relative;
+
+  width: var(--_clock-width);
+  aspect-ratio: 1;
+
+  background: white;
+  border: calc(var(--_clock-width) / 20) solid #050511;
+
+  border-radius: 50%;
+}
+
+
+.clock-dot {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  translate: -55% -55%;
+
+  width: calc(var(--_clock-width) / 25);
+  aspect-ratio: 1;
+
+  z-index: 1;
+
+  background: #aaa;
+
+  border-radius: 50%;
+}
+
+
+.clock-hands {
+  position: absolute;
+  inset: 0;
+
+  filter: drop-shadow(4px 3px 1px #4446);
+}
+
+.clock-hand_seconds, 
+.clock-hand_mins,
+.clock-hand_hours {
+  position: absolute;
+  left: 50%;
+  bottom: 50%;
+  translate: -50%;
+
+  transform-origin: 50% 100%;
+
+  --_border-radius: 30%;
+  border-top-right-radius: var(--_border-radius);
+  border-top-left-radius: var(--_border-radius);
+}
+
+
+.clock-hand_seconds {
+  width: 5px;
+  height: calc(var(--_clock-width) / 2 - 30px);
+
+  background-color: red;
+
+  /* transition: rotate 50ms; */
+}
+.clock-hand_mins {
+  width: 8px;
+  height: calc(var(--_clock-width) / 2 - 45px);
+  
+  background-color: #444;
+}
+.clock-hand_hours {
+  width: 10px;
+  height: calc(var(--_clock-width) / 3 - 40px);
+  
+  background-color: #333;
+}

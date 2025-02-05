@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Analogue Clock</title>
+
+  <link rel="stylesheet" href="style.css">
+  <script src="script.js"></script>
+</head>
+<body>
+  <div class="clock-container">
+    <button onclick="resetTime()">Today, now</button>
+
+    <div class="clock">
+      <div class="clock-hands">
+        <div class="clock-dot"></div>
+        <div class="clock-hand_hours"></div>
+        <div class="clock-hand_mins"></div>
+        <div class="clock-hand_seconds"></div>
+      </div>
+    </div>
+  </div>
+</body>
+
+<script>
+  const hourHand = document.querySelector(".clock-hand_hours");
+  const minsHand = document.querySelector(".clock-hand_mins");
+  const secondsHand = document.querySelector(".clock-hand_seconds");
+
+  const clockHands = document.querySelector(".clock-hands");
+  const clockContainer = document.querySelector(".clock-container");
+
+  const centerElement = document.querySelector(".clock-dot").getBoundingClientRect();
+  const centerLoc = [centerElement.left + centerElement.width / 2, centerElement.top + centerElement.height / 2];
+</script>
+
+</html>
