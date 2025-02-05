@@ -1,16 +1,19 @@
 let currentTime = new Date();
+let currentSeconds = currentTime.getSeconds();
 
 
 function addSeconds(seconds) {
-  currentTime.setSeconds(currentTime.getSeconds() + seconds);
+  currentTime.setMilliseconds(currentTime.getMilliseconds() + seconds * 1000);
 }
 
 function resetTime() {
   currentTime = new Date();
+  currentSeconds = currentTime.getSeconds();
 }
 
 function tick() {
   addSeconds(1);
+  currentSeconds += 1;
 }
 
 setInterval(tick, 1000);
@@ -23,7 +26,7 @@ function renderClock() {
 
   hourHand.style.rotate = (360 * (hour + mins / 12)) + "deg";
   minsHand.style.rotate = (360 * (mins + secs / 60)) + "deg";
-  secondsHand.style.rotate = (360 * secs) + "deg";
+  secondsHand.style.rotate = (360 * currentSeconds / 60) + "deg";
 
   let lightAngle = (hour + mins / 12) * Math.PI;
   let xDist = Math.sin(lightAngle) * 6;
@@ -93,10 +96,12 @@ function calculateDireciton(loc) {
 
 function onMouseDrag(event) {
   if (document.querySelector(".clock-hand_seconds").contains(event.target)) {
-    addSeconds(calculateDireciton([event.clientX, event.clientY]) * 1);
+    let changeInSeconds = calculateDireciton([event.clientX, event.clientY]) * 0.25;
+    currentSeconds = (currentSeconds + changeInSeconds) % 60;
+    addSeconds(changeInSeconds);
   }
   else if (document.querySelector(".clock-hand_mins").contains(event.target)) {
-    addSeconds(calculateDireciton([event.clientX, event.clientY]) * 60);
+    addSeconds(calculateDireciton([event.clientX, event.clientY]) * 20);
   }
   else if (document.querySelector(".clock-hand_hours").contains(event.target)) {
     addSeconds(calculateDireciton([event.clientX, event.clientY]) * 300);
