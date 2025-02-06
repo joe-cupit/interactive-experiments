@@ -121,3 +121,11 @@ function onMouseUp() {
 
 document.addEventListener("mousedown", onMouseDown);
 document.addEventListener("mouseup", onMouseUp);
+
+
+function handleWindowResize() {
+  let centerDimensions = centerElement.getBoundingClientRect();
+  centerLoc = [centerDimensions.left + centerDimensions.width / 2, centerDimensions.top + centerDimensions.height / 2];
+}
+
+window.addEventListener("resize", handleWindowResize);

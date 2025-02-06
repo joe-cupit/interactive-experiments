@@ -31,8 +31,9 @@
   const clockHands = document.querySelector(".clock-hands");
   const clockContainer = document.querySelector(".clock-container");
 
-  const centerElement = document.querySelector(".clock-dot").getBoundingClientRect();
-  const centerLoc = [centerElement.left + centerElement.width / 2, centerElement.top + centerElement.height / 2];
+  const centerElement = document.querySelector(".clock-dot");
+  let centerDimensions = centerElement.getBoundingClientRect();
+  let centerLoc = [centerDimensions.left + centerDimensions.width / 2, centerDimensions.top + centerDimensions.height / 2];
 </script>
 
 </html>
