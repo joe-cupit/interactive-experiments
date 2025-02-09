@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Topology</title>
+
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="topology-container" oncontextmenu="return false;">
+    <div class="topology_top-down">
+      <div id="topology_cursor" class="topology_cursor"></div>
+      <canvas id="canvas_top-down" width="100" height="100"></canvas>
+    </div>
+    <div class="topology_side-on">
+      <canvas id="canvas_side-on" width="100" height="100"></canvas>
+    </div>
+  </div>
+
+  <div>
+    <button onclick="rotateAnticlockwise()">anticlockwise</button>
+    <button onclick="rotateClockwise()">clockwise</button>
+  </div>
+</body>
+
+<script src="script.js"></script>
+</html>

@@ -1,0 +1,67 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  user-select: none;
+}
+
+body {
+  align-content: center;
+  justify-items: center;
+  min-height: 100vh;
+
+  background: #424;
+}
+
+
+.topology-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 2rem;
+  flex-wrap: wrap;
+  padding: 2rem;
+
+  width: fit-content;
+}
+
+.topology-container > div {
+  width: min(400px, 90vw);
+  aspect-ratio: 1;
+  border: 4px solid #202;
+  /* background: #ede; */
+}
+
+
+.topology_top-down {
+  position: relative;
+  border-radius: 50%;
+  overflow: hidden;
+}
+
+.topology_cursor {
+  position: absolute;
+
+  width: 30px;
+  aspect-ratio: 1;
+
+  border: 3px solid #111e;
+  border-radius: 50%;
+
+  pointer-events: none;
+}
+
+#canvas_top-down {
+  cursor: none;
+}
+
+
+.topology_side-on {
+  border-radius: 0.25rem;
+}
+
+
+#canvas_top-down,
+#canvas_side-on {
+  width: 100%;
+  height: 100%;
+}
