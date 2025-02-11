@@ -10,17 +10,41 @@
 </head>
 <body>
 
-  <div class="departure-board" oncontextmenu="return false;"></div>
-
-  <div style="margin-block-start: 2rem;">
-    <button onclick="clearBoard()">Clear board</button>
-    <!-- <button onclick="fillBoard()">Fill board</button> -->
+  <div class="departure-container">
+    <div class="header-buttons">
+      Board size:
+      <label>
+        <input type="radio" name="board-size"
+          onclick="setBoardSize('small')"
+        />
+        S
+      </label>
+      <label>
+        <input type="radio" name="board-size" checked
+          onclick="setBoardSize('medium')"
+        />
+        M
+      </label>
+      <label>
+        <input type="radio" name="board-size"
+          onclick="setBoardSize('large')"
+        />
+        L
+      </label>
+    </div>
+  
+    <div id="departure-board" class="departure-board" oncontextmenu="return false;"></div>
+  
+    <div style="margin-block-start: 2rem;">
+      <button onclick="clearBoard()">Clear board</button>
+      <!-- <button onclick="fillBoard()">Fill board</button> -->
+    </div>
   </div>
 
 </body>
 
 <script>
-  createBoard(6, 75);
+  setBoardSize("medium")
 </script>
 
 </html>

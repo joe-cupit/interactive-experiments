@@ -2,6 +2,8 @@ let penDown = false;
 let eraseDown = false;
 let prevEventTarget = null;
 
+let boardSize = "medium";
+
 
 function handleMouseMove(event) {
   if (!penDown && !eraseDown) return;
@@ -68,10 +70,19 @@ async function clearRow(rowElement) {
 }
 
 function clearBoard() {
-  const departureRows = document.querySelectorAll(".departure-row");
+  if (boardSize === "small" || boardSize === "medium") {
+    const departureRows = document.querySelectorAll(".departure-row");
 
-  for (let dRow of departureRows) {
-    clearRow(dRow);
+    for (let dRow of departureRows) {
+      clearRow(dRow);
+    }
+  }
+  else {
+    const departurePointsOn = document.querySelectorAll(".departure-point.on");
+
+    for (let point of departurePointsOn) {
+      point.classList.remove("on");
+    }
   }
 }
 
@@ -113,6 +124,8 @@ document.addEventListener("keyup", handleKeyUp);
 
 function createBoard(rows, rowLen) {
   const departureBoard = document.querySelector(".departure-board");
+  departureBoard.innerHTML = "";
+
   const departurePoint = "<div class='departure-point'></div>";
 
   for (let i=0; i<rows; i++) {
@@ -128,3 +141,35 @@ function createBoard(rows, rowLen) {
     point.style.setProperty("--_opacity", (Math.random() / 4 + 0.75).toFixed(4));
   }
 }
+
+
+function setBoardSize(size) {
+  const departureBoard = document.getElementById("departure-board");
+  let pointWidth = 10;
+  let pointGap = 2;
+
+  switch (size) {
+    case "small":
+      createBoard(4, 50);
+      pointWidth = 15;
+      pointGap = 3;
+      break;
+    case "medium":
+      createBoard(6, 75);
+      pointWidth = 10;
+      pointGap = 2;
+      break;
+    case "large":
+      createBoard(8, 100);
+      pointWidth = 8;
+      pointGap = 1;
+      break;
+    default:
+      break;
+  }
+  boardSize = size;
+
+  departureBoard.style.setProperty("--_departure-point-width", pointWidth+"px");
+  departureBoard.style.setProperty("--_departure-point-gap", pointGap+"px");
+}
+
