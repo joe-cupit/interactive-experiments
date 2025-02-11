@@ -5,6 +5,10 @@
 
 
 body {
+  --background: #160B06;
+  --light-off: #261B18;
+  --light-on: #EFAA32;
+
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -13,7 +17,7 @@ body {
   min-width: fit-content;
   min-height: 100vh;
 
-  background: #160B06;
+  background: var(--background);
   margin: 0;
   padding: 1rem;
 }
@@ -22,17 +26,20 @@ button {
   color: white;
   font-weight: bold;
   font-size: inherit;
-  background: #3d2012;
+  background: var(--light-off);
   border: none;
   padding: 0.5rem 0.75rem;
   margin: 0.5rem;
   border-radius: 0.5rem;
 
   cursor: pointer;
-  transition: background-color 100ms;
 }
 button:hover {
-  background: #4d2916;
+  opacity: 0.85;
+}
+button:active {
+  opacity: 1;
+  background: var(--light-on);
 }
 
 
@@ -49,27 +56,35 @@ button:hover {
   display: flex;
   flex-direction: column;
   flex-wrap: wrap;
-  gap: var(--_departure-point-gap);
 
   width: fit-content;
   height: calc((var(--_departure-point-width) + var(--_departure-point-gap)) * var(--_departure-row-height));
 }
 .departure-point {
-  position: relative;
-  background: #261B18;
+  --_opacity: 0.5;
 
-  width: var(--_departure-point-width);
+  position: relative;
+  width: calc(var(--_departure-point-width) + var(--_departure-point-gap));
   aspect-ratio: 1;
-  border-radius: 50%;
+
+  cursor: pointer;
 }
 
-
 .departure-point.on::before,
-.departure-point.on::after {
+.departure-point::after {
   content: "";
   position: absolute;
-  inset: 0;
-  border-radius: inherit;
+  top: 50%;
+  left: 50%;
+  translate: -50% -50%;
+
+  width: var(--_departure-point-width);
+  height: var(--_departure-point-width);
+  border-radius: 50%;
+}
+.departure-point::after {
+  z-index: 0;
+  background: var(--light-off);
 }
 
 .departure-point.on::before {
@@ -77,12 +92,13 @@ button:hover {
 
   box-shadow:
     0 0 calc(var(--_departure-point-width) * 0.3) calc(var(--_departure-point-width) * 0.1) #f5b545aa,
-    0 0 var(--_departure-point-width) calc(var(--_departure-point-width) * 0.5) #cf620277,
-    0 0 calc(var(--_departure-point-width) * 1.2) calc(var(--_departure-point-width) * 0.6) #6c280655;
+    0 0 var(--_departure-point-width) calc(var(--_departure-point-width) * 0.5) #cf620277;
+    /* 0 0 calc(var(--_departure-point-width) * 1.2) calc(var(--_departure-point-width) * 0.6) #6c280655; */
+  opacity: var(--_opacity);
 }
 .departure-point.on::after {
   z-index: 2;
 
-  background: #EFAA32;
-  opacity: 1;
+  background: var(--light-on);
+  opacity: var(--_opacity);
 }

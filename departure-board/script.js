@@ -122,4 +122,9 @@ function createBoard(rows, rowLen) {
 
     departureBoard.appendChild(departureRow);
   }
+
+  const departurePoints = departureBoard.querySelectorAll(".departure-point");
+  for (let point of departurePoints) {
+    point.style.setProperty("--_opacity", (Math.random() / 4 + 0.75).toFixed(4));
+  }
 }
