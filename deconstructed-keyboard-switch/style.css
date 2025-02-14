@@ -1,0 +1,138 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  user-select: none;
+}
+
+body {
+  justify-items: center;
+  align-content: center;
+  min-height: 100vh;
+
+  background: #121212;
+  font-family: sans-serif;
+
+  --transition-duration: 500ms;
+  --transition-ease: ease-in-out;
+}
+
+.switch-main {
+  display: flex;
+  gap: 12rem;
+
+  padding-inline-start: 5rem;
+}
+
+.keybaord-switch {
+  position: relative;
+}
+
+.switch-part img {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  translate: -50% -50%;
+
+  scale: 0.5;
+
+  transition: transform var(--transition-duration) var(--transition-ease), z-index 0ms calc(var(--transition-duration) * 0.8);
+}
+
+
+.switch-top-main {
+  z-index: 10;
+}
+.switch-stem {
+  z-index: 9;
+}
+.switch-top-back {
+  z-index: 8;
+}
+.switch-bottom-top {
+  z-index: 7;
+}
+.switch-top-feet-top {
+  z-index: 6;
+}
+.switch-bottom-mid {
+  z-index: 5;
+}
+.switch-spring {
+  z-index: 4;
+}
+.switch-bottom {
+  z-index: 3;
+}
+.switch-top-feet-bottom {
+  z-index: 2;
+}
+
+
+body:has(.keybaord-switch:hover) .switch-part-top * {
+  transform: translateY(-28rem);
+}
+
+body:has(.keybaord-switch:hover) .switch-part-stem * {
+  transform: translateY(-4rem);
+}
+
+body:has(.keybaord-switch:hover) .switch-part-spring * {
+  transform: translateY(10rem);
+}
+
+body:has(.keybaord-switch:hover) .switch-part-bottom * {
+  transform: translateY(26rem);
+}
+
+body:has(.keybaord-switch:hover) .switch-top-feet-top {
+  z-index: 10;
+  transition: transform var(--transition-duration) var(--transition-ease), z-index 0ms calc(var(--transition-duration) * 0.3);
+}
+
+.switch-info {
+  color: white;
+  width: 10rem;
+}
+
+.switch-info .switch-part p {
+  opacity: 0;
+
+  position: relative;
+  scale: 0.5;
+  font-size: 2rem;
+  min-width: fit-content;
+  white-space: nowrap;
+
+  transition: transform var(--transition-duration) var(--transition-ease), opacity calc(var(--transition-duration) * 0.5) var(--transition-ease);
+}
+
+.switch-info .switch-part p::before {
+  content: "";
+  position: absolute;
+  right: 120%;
+  top: 50%;
+  translate: 0 -50%;
+
+  background: white;
+  width: 10rem;
+  height: 0.25rem;
+}
+
+.switch-hover {
+  opacity: 1;
+  position: absolute;
+  top: 50%;
+  left: 52%;
+  font-size: 1.25em;
+
+  transition: opacity calc(var(--transition-duration) * 0.3) var(--transition-ease);
+}
+
+body:has(.keybaord-switch:hover) .switch-part p {
+  opacity: 1;
+  transition: transform var(--transition-duration) var(--transition-ease), opacity calc(var(--transition-duration) * 0.2) var(--transition-ease);
+}
+body:has(.keybaord-switch:hover) .switch-hover {
+  opacity: 0;
+}
