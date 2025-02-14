@@ -23,7 +23,7 @@ function drawGrid() {
 
   for (let i=0; i<pixels.length; i++) {
     for (let j=0; j<pixels[0].length; j++) {
-      let colour = "hsl(200, 50%, " + ((pixels[i][j]/maxLayers)*80 + 15) + "%)";
+      let colour = "hsl(280, 50%, " + ((pixels[i][j]/maxLayers)*80 + 15) + "%)";
       ctxTD.fillStyle = colour;
       ctxTD.fillRect(j*pixelWidth, i*pixelWidth, pixelWidth, pixelWidth);
     }
@@ -47,28 +47,8 @@ function average(values) {
   return sum / values.length;
 }
 
+
 function smoothArray(values, alpha) {
-  let weighted = average(values) * alpha;
-  let smoothed = [];
-
-  for (var i in values) {
-    i = Number(i);
-    let prev = values[i-1] || 0;
-    let curr = values[i];
-    let next = values[i+1] || 0;
-
-    if (curr === 0 && prev === 0 && next === 0) {
-      smoothed.push(0)
-    }
-    else {
-      smoothed.push(average([weighted, prev, curr, next]));
-    }
-  }
-
-  return smoothed;
-}
-
-function smoothArray2(values, alpha) {
   let smoothed = [];
 
   for (var i in values) {
@@ -79,7 +59,7 @@ function smoothArray2(values, alpha) {
     let next = values[i+1] || 0;
     let nextnext = values[i+2] || 0;
 
-    smoothed.push(average([prevprev * alpha / 2, prev * alpha, curr, next * alpha, nextnext * alpha / 2]));
+    smoothed.push(average([prevprev * alpha / 3, prev * alpha, curr, next * alpha, nextnext * alpha / 3]));
   }
 
   return smoothed;
@@ -210,34 +190,33 @@ function drawResult() {
   ctxSO.clearRect(0, 0, widthSO, heightSO);
 
   let rotatedPixels = []
-  console.log(angle)
   switch (angle) {
     case 0:
       rotatedPixels = pixels[0].map((val, index) => pixels.map(row => row[index]).reverse());
       break;
-    case 1:
+    case 7:
       rotatedPixels = getQuarterRotate1();
       break;
-    case 2:
+    case 6:
       rotatedPixels = pixels.map(row => [...row].reverse()).reverse();
       break;
-    case 3:
+    case 5:
       rotatedPixels = getQuarterRotate3();
       break;
     case 4:
       rotatedPixels = pixels[0].map((val, index) => pixels.map(row => row[row.length-1-index]));
       break;
-    case 5:
+    case 3:
       rotatedPixels = getQuarterRotate5();
       break;
-    case 6:
+    case 2:
       rotatedPixels = pixels;
       break;
-    case 7:
+    case 1:
       rotatedPixels = getQuarterRotate7();
       break;
     default:
-      console.log("not yet")
+      console.log("Invalid angle: " + angle);
   }
 
   let barWidth = Math.ceil(widthSO / rotatedPixels.length);
@@ -249,7 +228,7 @@ function drawResult() {
   }
   heights.push(0);
 
-  let smoothedHeights = smoothArray2(heights, 0.5);
+  let smoothedHeights = smoothArray(heights, 0.4);
 
   ctxSO.fillStyle = "#212";
   ctxSO.beginPath();
@@ -325,6 +304,7 @@ function handleMouseDown(event) {
 function handleMouseUp() {
   canvasTD.removeEventListener("mousemove", handleMouseDrag);
   prevPixel = [null, null];
+  prevPixels = [];
 }
 
 canvasTD.addEventListener("mousedown", handleMouseDown);
@@ -355,3 +335,15 @@ function rotateClockwise() {
   if (angle < 0) angle += 8;
   drawResult();
 }
+
+
+function updateRotate(e) {
+  let newAngle = Number(e.target.value) % 8;
+
+  if (newAngle !== angle) {
+    angle = newAngle;
+    drawResult();
+  }
+}
+
+document.getElementById("rotate-range").onmousemove = updateRotate;
