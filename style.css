@@ -113,25 +113,25 @@ p {
 .page-link_analogue-clock {
   color: var(--clr-black);
   background-color: var(--clr-white);
-  background-image: url('/assets/images/thumbnail_analogue-clock.webp');
+  background-image: url('assets/images/thumbnail_analogue-clock.webp');
 }
 
 .page-link_deconstructed-keyboard-switch {
   color: var(--clr-white);
   background-color: var(--clr-black);
-  background-image: url('/assets/images/thumbnail_deconstructed-keyboard-switch.webp');
+  background-image: url('assets/images/thumbnail_deconstructed-keyboard-switch.webp');
 }
 
 .page-link_departure-board {
   color: var(--clr-white);
   background-color: var(--clr-black);
-  background-image: url('/assets/images/thumbnail_departure-board.webp');
+  background-image: url('assets/images/thumbnail_departure-board.webp');
 }
 
 .page-link_topology {
   color: var(--clr-white);
   background-color: var(--clr-black);
-  background-image: url('/assets/images/thumbnail_topology.webp');
+  background-image: url('assets/images/thumbnail_topology.webp');
 }
 
 
