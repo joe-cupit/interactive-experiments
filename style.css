@@ -1,0 +1,167 @@
+@font-face {
+  font-family: facade-sud;
+  src: url('assets/fonts/Facade-Sud.woff');
+}
+@font-face {
+  font-family: facade-ouest;
+  src: url('assets/fonts/Facade-Ouest.woff');
+}
+
+
+:root {
+  --clr-black: #111;
+  --clr-white: #eee;
+
+  --clr-background: #030303;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+::selection {
+  color: var(--clr-black);
+  background: var(--clr-white);
+}
+
+
+body {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-height: 100vh;
+
+  color: var(--clr-white);
+  background: var(--clr-background);
+
+  font-family: facade-sud, system-ui, sans-serif;
+}
+
+span,
+p {
+  font-family: facade-ouest, system-ui, sans-serif;
+}
+p {
+  font-size: 1.125rem;
+}
+
+.home-wrapper {
+  display: grid;
+  gap: 2rem;
+
+  width: min(70rem, 90%);
+  margin-inline: auto;
+  margin-block: 4rem;
+}
+
+.home-wrapper h1 {
+  font-size: 3rem;
+  font-weight: 700;
+}
+
+.home-header {
+  margin-block-end: 0.5rem;
+}
+.home-header p {
+  margin-block-start: 0.75rem;
+}
+
+.home-list {
+  list-style: none;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(50%, 26rem), 1fr));
+  gap: 2rem;
+}
+.home-list li {
+  display: grid;
+}
+.page-link {
+  border-radius: 0.125rem;
+  padding: 1rem;
+
+  color: inherit;
+  font: inherit;
+  font-weight: 500;
+  text-decoration: none;
+
+  transition-property: background-color, translate;
+  transition-duration: 200ms;
+
+  min-height: 15rem;
+
+  background-position: bottom right;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+.page-link:hover {
+  translate: 0 -0.5rem;
+}
+
+.page-link h2 {
+  font-size: 2rem;
+  font-weight: 700;
+  max-width: 70%;
+}
+.page-link p {
+  max-width: min(40ch, 60%);
+  display: none;
+}
+
+
+.page-link_analogue-clock {
+  color: var(--clr-black);
+  background-color: var(--clr-white);
+  background-image: url('/assets/images/thumbnail_analogue-clock.webp');
+}
+
+.page-link_deconstructed-keyboard-switch {
+  color: var(--clr-white);
+  background-color: var(--clr-black);
+  background-image: url('/assets/images/thumbnail_deconstructed-keyboard-switch.webp');
+}
+
+.page-link_departure-board {
+  color: var(--clr-white);
+  background-color: var(--clr-black);
+  background-image: url('/assets/images/thumbnail_departure-board.webp');
+}
+
+.page-link_topology {
+  color: var(--clr-white);
+  background-color: var(--clr-black);
+  background-image: url('/assets/images/thumbnail_topology.webp');
+}
+
+
+.footer-wrapper {
+  display: flex;
+  justify-content: space-between;
+  
+  width: min(70rem, 90%);
+  margin-block-start: auto;
+  margin-inline: auto;
+  padding-inline: 0.5rem;
+
+  font-family: facade-ouest, system-ui, sans-serif;
+
+  border-top: 1px solid hsl(from var(--clr-white) h s l / 30%);
+
+  margin-block-start: auto;
+  padding-block: 2rem;
+}
+
+.footer-left {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.footer-wrapper a {
+  color: inherit;
+  text-decoration: none;
+}
+.footer-wrapper a:hover {
+  text-decoration: underline;
+}
+
