@@ -13,7 +13,7 @@ body {
   background: #121212;
   font-family: sans-serif;
 
-  --transition-duration: 500ms;
+  --transition-duration: 300ms;
   --transition-ease: ease-in-out;
 }
 
@@ -41,31 +41,37 @@ body {
 
 
 .switch-top-main {
-  z-index: 10;
-}
-.switch-stem {
-  z-index: 9;
-}
-.switch-top-back {
-  z-index: 8;
+  z-index: 11;
 }
 .switch-bottom-top {
-  z-index: 7;
+  z-index: 10;
 }
 .switch-top-feet-top {
-  z-index: 6;
+  z-index: 9;
+}
+.switch-stem-top {
+  z-index: 8;
+}
+.switch-top-back {
+  z-index: 7;
 }
 .switch-bottom-mid {
+  z-index: 6;
+}
+.switch-spring-top {
   z-index: 5;
 }
-.switch-spring {
+.switch-stem-back {
   z-index: 4;
 }
-.switch-bottom {
+.switch-spring-back {
   z-index: 3;
 }
-.switch-top-feet-bottom {
+.switch-bottom {
   z-index: 2;
+}
+.switch-top-feet-bottom {
+  z-index: 1;
 }
 
 
@@ -85,10 +91,10 @@ body:has(.keybaord-switch:hover) .switch-part-bottom * {
   transform: translateY(26rem);
 }
 
-body:has(.keybaord-switch:hover) .switch-top-feet-top {
+/* body:has(.keybaord-switch:hover) .switch-top-feet-top {
   z-index: 10;
   transition: transform var(--transition-duration) var(--transition-ease), z-index 0ms calc(var(--transition-duration) * 0.3);
-}
+} */
 
 .switch-info {
   color: white;
