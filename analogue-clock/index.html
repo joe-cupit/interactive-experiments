@@ -10,9 +10,21 @@
 </head>
 <body>
   <div class="clock-container">
-    <button onclick="resetTime()">Today, now</button>
-
     <div class="clock">
+      <div class="clock-numbers">
+        <div class="clock-numbers_big" style="rotate: 0deg"></div>
+        <div class="clock-numbers_small" style="rotate: 30deg"></div>
+        <div class="clock-numbers_small" style="rotate: 60deg"></div>
+        <div class="clock-numbers_big" style="rotate: 90deg"></div>
+        <div class="clock-numbers_small" style="rotate: 120deg"></div>
+        <div class="clock-numbers_small" style="rotate: 150deg"></div>
+        <div class="clock-numbers_big" style="rotate: 180deg"></div>
+        <div class="clock-numbers_small" style="rotate: 210deg"></div>
+        <div class="clock-numbers_small" style="rotate: 240deg"></div>
+        <div class="clock-numbers_big" style="rotate: 270deg"></div>
+        <div class="clock-numbers_small" style="rotate: 300deg"></div>
+        <div class="clock-numbers_small" style="rotate: 330deg"></div>
+      </div>
       <div class="clock-hands">
         <div class="clock-dot"></div>
         <div class="clock-hand_hours"></div>
@@ -20,6 +32,8 @@
         <div class="clock-hand_seconds"></div>
       </div>
     </div>
+
+    <button onclick="resetTime()">Today, now</button>
   </div>
 </body>
 
@@ -28,6 +42,7 @@
   const minsHand = document.querySelector(".clock-hand_mins");
   const secondsHand = document.querySelector(".clock-hand_seconds");
 
+  const clockNumbers = document.querySelector(".clock-numbers");
   const clockHands = document.querySelector(".clock-hands");
   const clockContainer = document.querySelector(".clock-container");
 

@@ -32,10 +32,11 @@ function renderClock() {
   let xDist = Math.sin(lightAngle) * 6;
   let yDist = -1 * Math.cos(lightAngle) * 8;
   clockHands.style.filter = `drop-shadow(${xDist}px ${yDist}px 1px #4446)`;
+  clockNumbers.style.filter = `drop-shadow(${xDist/1.5}px ${yDist/1.75}px 1px #4446)`;
 
   let hue = (hour + mins / 12) * 100;
   if (hue > 100) hue = 200 - hue;
-  clockContainer.style.background = `hsl(220, ${hue*0.8}%, ${hue}%)`;
+  clockContainer.style.background = `hsl(220, ${hue*0.8 + 0.1}%, ${hue*0.8 + 0.1}%)`;
 }
 
 setInterval(renderClock, 10);
